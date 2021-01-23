@@ -8,7 +8,7 @@ use Ambta\DoctrineEncryptBundle\Tests\Functional\fixtures\Entity\CascadeTarget;
 
 abstract class AbstractBasicQueryTestCase extends AbstractFunctionalTestCase
 {
-    public function testPersistEntity()
+    public function testPersistEntity(): void
     {
         $user = new CascadeTarget();
         $user->setNotSecret('My public information');
@@ -21,7 +21,7 @@ abstract class AbstractBasicQueryTestCase extends AbstractFunctionalTestCase
         $this->assertEquals(3,$this->getCurrentQueryCount());
     }
 
-    public function testNoUpdateOnReadEncrypted()
+    public function testNoUpdateOnReadEncrypted(): void
     {
         $this->entityManager->beginTransaction();
         $this->assertEquals(1,$this->getCurrentQueryCount());
@@ -57,7 +57,7 @@ abstract class AbstractBasicQueryTestCase extends AbstractFunctionalTestCase
         $this->assertEquals(4,$this->getCurrentQueryCount());
     }
 
-    public function testStoredDataIsEncrypted()
+    public function testStoredDataIsEncrypted(): void
     {
         $user = new CascadeTarget();
         $user->setNotSecret('My public information');

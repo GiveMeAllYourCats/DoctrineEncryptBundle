@@ -11,7 +11,7 @@ use Doctrine\DBAL\Logging\DebugStack;
 
 abstract class AbstractDoctrineEncryptSubscriberTestCase extends AbstractFunctionalTestCase
 {
-    public function testEncryptionHappensOnOnlyAnnotatedFields()
+    public function testEncryptionHappensOnOnlyAnnotatedFields(): void
     {
         $secret    = "It's a secret";
         $notSecret = "You're all welcome to know this.";
@@ -44,7 +44,7 @@ abstract class AbstractDoctrineEncryptSubscriberTestCase extends AbstractFunctio
         $this->assertEquals($secret, $decrypted);
     }
 
-    public function testEncryptionCascades()
+    public function testEncryptionCascades(): void
     {
         $secret        = "It's a secret";
         $notSecret     = "You're all welcome to know this.";
@@ -87,7 +87,7 @@ abstract class AbstractDoctrineEncryptSubscriberTestCase extends AbstractFunctio
      * @throws \Doctrine\DBAL\DBALException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function testEncryptionDoesNotHappenWhenThereIsNoChange()
+    public function testEncryptionDoesNotHappenWhenThereIsNoChange(): void
     {
         $secret    = "It's a secret";
         $notSecret = "You're all welcome to know this.";
@@ -155,7 +155,7 @@ abstract class AbstractDoctrineEncryptSubscriberTestCase extends AbstractFunctio
 
     }
 
-    public function testEncryptionDoesHappenWhenASecretIsChanged()
+    public function testEncryptionDoesHappenWhenASecretIsChanged(): void
     {
         $secret    = "It's a secret";
         $notSecret = "You're all welcome to know this.";

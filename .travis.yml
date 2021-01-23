@@ -26,6 +26,12 @@ matrix:
     - php: 7.3
       env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text"
 
+    - php: 7.4
+      env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text"
+
+    - php: 8.0
+      env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text"
+
       # Latest commit to master
     - php: 7.3
       env: STABILITY="dev"

@@ -4,8 +4,7 @@
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         syntaxCheck="true">
+         convertWarningsToExceptions="true">
 
     <testsuites>
         <testsuite name="unit">
@@ -16,15 +15,15 @@
         </testsuite>
     </testsuites>
 
-    <filter>
-        <whitelist>
+    <coverage>
+        <include>
             <directory>./Command</directory>
             <directory>./Configuration</directory>
             <directory>./DependencyInjection</directory>
             <directory>./Encryptors</directory>
             <directory>./Subscribers</directory>
-        </whitelist>
-    </filter>
+        </include>
+    </coverage>
 
     <php>
         <env name="KERNEL_DIR" value="./Tests/Functional/Fixtures/app" />

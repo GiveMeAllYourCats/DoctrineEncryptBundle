@@ -9,7 +9,7 @@ class HaliteEncryptorTest extends TestCase
 {
     private const DATA = 'foobar';
 
-    public function testEncryptExtension()
+    public function testEncryptExtension(): void
     {
         if (! extension_loaded('sodium')) {
             $this->markTestSkipped('This test only runs when the sodium extension is enabled.');
@@ -27,7 +27,7 @@ class HaliteEncryptorTest extends TestCase
         $this->assertSame($key, $newkey, 'The key must not be modified');
     }
 
-    public function testGenerateKey()
+    public function testGenerateKey(): void
     {
         if (! extension_loaded('sodium')) {
             $this->markTestSkipped('This test only runs when the sodium extension is enabled.');
@@ -46,7 +46,7 @@ class HaliteEncryptorTest extends TestCase
     }
 
 
-    public function testEncryptWithoutExtensionThrowsException()
+    public function testEncryptWithoutExtensionThrowsException(): void
     {
         if (extension_loaded('sodium')) {
             $this->markTestSkipped('This only runs when the sodium extension is disabled.');

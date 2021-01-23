@@ -35,7 +35,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
      */
     private $reader;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->encryptor = $this->createMock(EncryptorInterface::class);
         $this->encryptor
@@ -71,7 +71,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
         $this->subscriber = new DoctrineEncryptSubscriber($this->reader, $this->encryptor);
     }
 
-    public function testSetRestorEncryptor()
+    public function testSetRestorEncryptor(): void
     {
         $replaceEncryptor = $this->createMock(EncryptorInterface::class);
 
@@ -82,7 +82,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
         $this->assertSame($this->encryptor, $this->subscriber->getEncryptor());
     }
 
-    public function testProcessFieldsEncrypt()
+    public function testProcessFieldsEncrypt(): void
     {
         $user = new User('David', 'Switzerland');
 
@@ -92,7 +92,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
         $this->assertStringStartsWith('encrypted-', $user->getAddress());
     }
 
-    public function testProcessFieldsEncryptExtend()
+    public function testProcessFieldsEncryptExtend(): void
     {
         $user = new ExtendedUser('David', 'Switzerland', 'extra');
 
@@ -103,7 +103,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
         $this->assertStringStartsWith('encrypted-', $user->extra);
     }
 
-    public function testProcessFieldsEncryptEmbedded()
+    public function testProcessFieldsEncryptEmbedded(): void
     {
         $withUser = new WithUser('Thing', 'foo', new User('David', 'Switzerland'));
 
@@ -115,7 +115,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
         $this->assertStringStartsWith('encrypted-', $withUser->user->getAddress());
     }
 
-    public function testProcessFieldsEncryptNull()
+    public function testProcessFieldsEncryptNull(): void
     {
         $user = new User('David', null);
 
@@ -125,7 +125,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
         $this->assertNull($user->getAddress());
     }
 
-    public function testProcessFieldsNoEncryptor()
+    public function testProcessFieldsNoEncryptor(): void
     {
         $user = new User('David', 'Switzerland');
 
@@ -136,7 +136,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
         $this->assertSame('Switzerland', $user->getAddress());
     }
 
-    public function testProcessFieldsDecrypt()
+    public function testProcessFieldsDecrypt(): void
     {
         $user = new User('encrypted-David<ENC>', 'encrypted-Switzerland<ENC>');
 
@@ -146,7 +146,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
         $this->assertSame('Switzerland', $user->getAddress());
     }
 
-    public function testProcessFieldsDecryptExtended()
+    public function testProcessFieldsDecryptExtended(): void
     {
         $user = new ExtendedUser('encrypted-David<ENC>', 'encrypted-Switzerland<ENC>', 'encrypted-extra<ENC>');
 
@@ -157,7 +157,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
         $this->assertSame('extra', $user->extra);
     }
 
-    public function testProcessFieldsDecryptEmbedded()
+    public function testProcessFieldsDecryptEmbedded(): void
     {
         $withUser = new WithUser('encrypted-Thing<ENC>', 'foo', new User('encrypted-David<ENC>', 'encrypted-Switzerland<ENC>'));
 
@@ -169,7 +169,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
         $this->assertSame('Switzerland', $withUser->user->getAddress());
     }
 
-    public function testProcessFieldsDecryptNull()
+    public function testProcessFieldsDecryptNull(): void
     {
         $user = new User('encrypted-David<ENC>', null);
 
@@ -179,7 +179,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
         $this->assertNull($user->getAddress());
     }
 
-    public function testProcessFieldsDecryptNonEncrypted()
+    public function testProcessFieldsDecryptNonEncrypted(): void
     {
         // no trailing <ENC> but somethint that our mock decrypt would change if called
         $user = new User('encrypted-David', 'encrypted-Switzerland');
@@ -193,7 +193,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
     /**
      * Test that fields are encrypted before flushing.
      */
-    public function testOnFlush()
+    public function testOnFlush(): void
     {
         $user = new User('David', 'Switzerland');
 
@@ -222,7 +222,7 @@ class DoctrineEncryptSubscriberTest extends TestCase
     /**
      * Test that fields are decrypted again after flushing
      */
-    public function testPostFlush()
+    public function testPostFlush(): void
     {
         $user = new User('encrypted-David<ENC>', 'encrypted-Switzerland<ENC>');
 

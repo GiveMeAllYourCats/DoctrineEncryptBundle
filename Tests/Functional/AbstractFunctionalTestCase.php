@@ -32,7 +32,7 @@ abstract class AbstractFunctionalTestCase extends TestCase
 
     abstract protected function getEncryptor(): EncryptorInterface;
 
-    public function setUp()
+    public function setUp(): void
     {
         // Create a simple "default" Doctrine ORM configuration for Annotations
         $isDevMode                 = true;
@@ -73,7 +73,7 @@ abstract class AbstractFunctionalTestCase extends TestCase
         error_reporting(E_ALL);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unlink($this->dbFile);
     }

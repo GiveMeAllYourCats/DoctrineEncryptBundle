@@ -16,12 +16,12 @@ class DoctrineEncryptExtensionTest extends TestCase
      */
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->extension = new DoctrineEncryptExtension();
     }
 
-    public function testConfigLoadHalite()
+    public function testConfigLoadHalite(): void
     {
         $container = $this->createContainer();
         $this->extension->load([[]], $container);
@@ -29,7 +29,7 @@ class DoctrineEncryptExtensionTest extends TestCase
         $this->assertSame(HaliteEncryptor::class, $container->getParameter('ambta_doctrine_encrypt.encryptor_class_name'));
     }
 
-    public function testConfigLoadDefuse()
+    public function testConfigLoadDefuse(): void
     {
         $container = $this->createContainer();
 
@@ -41,7 +41,7 @@ class DoctrineEncryptExtensionTest extends TestCase
         $this->assertSame(DefuseEncryptor::class, $container->getParameter('ambta_doctrine_encrypt.encryptor_class_name'));
     }
 
-    public function testConfigLoadCustom()
+    public function testConfigLoadCustom(): void
     {
         $container = $this->createContainer();
         $config = [
@@ -54,7 +54,7 @@ class DoctrineEncryptExtensionTest extends TestCase
         $this->assertSame(self::class, $container->getParameter('ambta_doctrine_encrypt.encryptor_class_name'));
     }
 
-    private function createContainer()
+    private function createContainer(): ContainerBuilder
     {
         $container = new ContainerBuilder(
             new ParameterBag(['kernel.debug' => false])

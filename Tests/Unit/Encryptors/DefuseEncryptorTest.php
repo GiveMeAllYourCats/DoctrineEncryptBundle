@@ -9,7 +9,7 @@ class DefuseEncryptorTest extends TestCase
 {
     private const DATA = 'foobar';
 
-    public function testEncrypt()
+    public function testEncrypt(): void
     {
         $keyfile = __DIR__.'/fixtures/defuse.key';
         $key = file_get_contents($keyfile);
@@ -24,7 +24,7 @@ class DefuseEncryptorTest extends TestCase
         $this->assertSame($key, $newkey, 'The key must not be modified');
     }
 
-    public function testGenerateKey()
+    public function testGenerateKey(): void
     {
         $keyfile = sys_get_temp_dir().'/defuse-'.md5(time());
         if (file_exists($keyfile)) {
